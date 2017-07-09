@@ -1,0 +1,56 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>API测试</title>
+    <script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<table style="width:800px;">
+    <tr>
+        <td width="50">
+            <b>URI:</b>
+        </td>
+        <td>
+            <input type="text" style="width:100%;" value="http://localhost:8080/cbwee_work/servlet/DepartmentController" id="apiUrl">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>data:</b>
+        </td>
+        <td>
+            <textarea style="width:100%;height: 300px;" id="postData"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center">
+            <input type="button" value="提交" id="submitBtn">
+        </td>
+    </tr>
+</table>
+<div id="getDate"></div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#submitBtn").click(function(){
+            var url = $("#apiUrl").val();
+            var postData = $("#postData").val();
+            if(url.length == 0 || postData.length == 0){
+                return
+            }
+            $.ajax({
+	            url: url,
+	            data: postData,
+	            success: function(e) {
+	                $("#getDate").html(e)
+	            }
+            });
+        
+        });
+    });
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

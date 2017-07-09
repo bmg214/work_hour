@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>doLogin</servlet-name>
+        <servlet-class>servlet.loginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>doLogin</servlet-name>
+        <url-pattern>/doLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userQuery</servlet-name>
+        <servlet-class>servlet.userQueryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userQuery</servlet-name>
+        <url-pattern>/userQuery</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

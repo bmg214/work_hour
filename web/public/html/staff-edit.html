@@ -1,0 +1,403 @@
+﻿<!--添加、编辑部门-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="Bookmark" href="/favicon.ico">
+    <link rel="Shortcut Icon" href="/favicon.ico"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../lib/html5shiv.js"></script>
+    <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <!--/meta 作为公共模版分离出去-->
+</head>
+<body>
+<article class="page-container">
+    <form action="" method="post" class="form form-horizontal" id="form-admin-staff-add">
+
+         <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>员工编号：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="number">
+            </div>
+
+             <label class="form-label col-sm-2"><span class="c-red">*</span>姓名：</label>
+             <div class="formControls col-sm-4">
+                 <input type="text" class="input-text" value="" placeholder="" id="name">
+             </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>性别：</label>
+            <div class="formControls col-sm-4">
+                <select type="text" id="sex" class="input-text" value="" placeholder="" >
+                    <option value="1">男</option>
+                    <option value="0">女</option>
+                </select>
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>生日：</label>
+            <div class="formControls col-sm-4">
+                <input type="date" class="input-text" value="" placeholder="" id="birthday">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>身份证号：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="IDnumber">
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>电话号码：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="phone">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>居住地址：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="address">
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>学历：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="education">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>毕业院校：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="university">
+            </div>
+
+            <label class="form-label col-sm-2"><span class="c-red">*</span>毕业时间：</label>
+            <div class="formControls col-sm-4">
+                <input type="date" class="input-text" value="" placeholder="" id="graduationTime">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>毕业证号：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="graduationNumber">
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>入职时间：</label>
+            <div class="formControls col-sm-4">
+                <input type="date" class="input-text" value="" placeholder="" id="inductionTime">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>第一次合同：</label>
+            <div class="formControls col-sm-4">
+                <input type="date" class="input-text" value="" placeholder="" id="contractFirstTime">
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>第二次合同：</label>
+            <div class="formControls col-sm-4">
+                <input type="date" class="input-text" value="" placeholder="" id="contractSecondTime">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>第三次合同：</label>
+            <div class="formControls col-sm-4">
+                <input type="date" class="input-text" value="" placeholder="" id="contractThirdTime">
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>第四次合同：</label>
+            <div class="formControls col-sm-4">
+                <input type="date" class="input-text" value="" placeholder="" id="contractFourthTime">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>所在部门：</label>
+            <div class="formControls col-sm-4">
+                <select type="text" id="departmentName" class="input-text" value="" placeholder="" ></select>
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>薪资：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="salary">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>岗位：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="stations">
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>职务：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="office">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-sm-2"><span class="c-red">*</span>职称：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="staff">
+            </div>
+            <label class="form-label col-sm-2"><span class="c-red">*</span>备注：</label>
+            <div class="formControls col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="remark">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <div class="col-sm-7 col-sm-offset-5">
+                <button type="submit" class="btn btn-success radius" id="admin-staff-save" name="admin-staff-save">
+                    <i class="icon-ok"></i> 保存
+                </button>
+            </div>
+        </div>
+
+    </form>
+</article>
+
+<input type="text" id="e_id" style="display: none;">
+
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="../js/base.js"></script>
+<script type="text/javascript" src="../lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="../lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+
+        //获取页面传过来的e_id
+        var getInfo=window.location.search.slice(window.location.search.indexOf("=")+1);
+
+        //判断属于新增还是编辑
+        if(getInfo.length>0){
+            $("#e_id").val(getInfo);
+            var getdata = {
+                id:getInfo
+            };
+            $.ajax({
+                type: "post",
+                url: "/employeesQuery",
+                data: getdata,
+                success: function (data) {
+                    //编号只读，不可编辑
+                    $("#number").val(data[0].number).attr("readOnly",true),
+                    $("#name").val(data[0].name),
+                    $("#sex").val(data[0].sex),
+                        //编辑时，从后端获取只要年月日的时间，且时间不归零与重置
+                    $("#birthday").val(data[0].birthday.split("T")[0]),
+                    $("#IDnumber").val(data[0].IDnumber),
+                    $("#phone").val(data[0].phone),
+                    $("#address").val(data[0].address),
+                    $("#education").val(data[0].education),
+                    $("#university").val(data[0].university),
+                    $("#graduationTime").val(data[0].graduationTime.split("T")[0]),
+                    $("#graduationNumber").val(data[0].graduationNumber),
+                    $("#inductionTime").val(data[0].inductionTime.split("T")[0]),
+                    $("#contractFirstTime").val(data[0].contractFirstTime.split("T")[0]),
+                    $("#contractSecondTime").val(data[0].contractSecondTime.split("T")[0]),
+                    $("#contractThirdTime").val(data[0].contractThirdTime.split("T")[0]),
+                    $("#contractFourthTime").val(data[0].contractFourthTime.split("T")[0]),
+                    $("#departmentName").val(data[0].departmentName),
+                    $("#salary").val(data[0].salary),
+                    $("#stations").val(data[0].stations),
+                    $("#office").val(data[0].office),
+                    $("#staff").val(data[0].staff),
+                    $("#remark").val(data[0].remark)
+                },
+                error: function (msg) {
+                    console.log(msg);
+                }
+            })
+        }
+
+        //保存员工
+        $("#form-admin-staff-add").validate({
+            rules: {
+                number: {
+                    required: true
+                },
+                name: {
+                    required: true
+                },
+                sex: {
+                    required: true
+                },
+                birthday: {
+                    required: true
+                },
+                IDnumber: {
+                    required: true
+                },
+                phone: {
+                    required: true
+                },
+                address: {
+                    required: true
+                },
+                education: {
+                    required: true
+                },
+                university: {
+                    required: true
+                },
+                graduationTime: {
+                    required: true
+                },
+                graduationNumber: {
+                    required: true
+                },
+                inductionTime: {
+                    required: true
+                },
+                contractFirstTime: {
+                    required: true
+                },
+                contractSecondTime: {
+                    required: true
+                },
+                contractThirdTime: {
+                    required: true
+                },
+                contractFourthTime: {
+                    required: true
+                },
+                salary: {
+                    required: true
+                },
+                departmentName: {
+                    required: true
+                },
+                stations: {
+                    required: true
+                },
+                office: {
+                    required: true
+                },
+                staff: {
+                    required: true
+                },
+                remark: {
+                    required: true
+                }
+            },
+            onkeyup: false,
+            focusCleanup: true,
+            success: "valid",
+            submitHandler: function (form) {
+                //$(form).ajaxSubmit();
+                var postData = {
+                    number:$("#number").val(),
+                    name:$("#name").val(),
+                    sex:$("#sex").val(),
+                    birthday:$("#birthday").val(),
+                    IDnumber:$("#IDnumber").val(),
+                    phone:$("#phone").val(),
+                    address:$("#address").val(),
+                    education:$("#education").val(),
+                    university:$("#university").val(),
+                    graduationTime:$("#graduationTime").val(),
+                    graduationNumber:$("#graduationNumber").val(),
+                    inductionTime:$("#inductionTime").val(),
+                    contractFirstTime:$("#contractFirstTime").val(),
+                    contractSecondTime:$("#contractSecondTime").val(),
+                    contractThirdTime:$("#contractThirdTime").val(),
+                    contractFourthTime:$("#contractFourthTime").val(),
+                    departmentId:$("#departmentName").val(),
+                    //下拉框选中数据并上传
+                    departmentName:$("#departmentName").find("option:selected").text(),
+                    salary:$("#salary").val(),
+                    stations:$("#stations").val(),
+                    office:$("#office").val(),
+                    staff:$("#staff").val(),
+                    remark:$("#remark").val(),
+                    sysid: userInfo.id,
+                    creater: userInfo.name
+                };
+
+                //修改员工
+                if(getInfo.length>0){
+                    postData.id =  getInfo;
+                    //用ajax提交
+                    $.ajax({
+                        type: "post",
+                        url: "/employeesEdit",
+                        data: postData,
+                        success: function (data) {
+                            if(data == "1"){
+                                layer.msg('修改员工成功', {
+                                    icon:6,
+                                    time:1000,
+                                },function (res) {
+                                    parent.location.reload();
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                });
+                         } else {
+                                layer.msg('修改员工失败', {icon:6,time:1000});
+                            }
+                        }
+                    });
+                } else {
+                    //新增员工
+                    $.ajax({
+                        type: "post",
+                        url: "/employeesAdd",
+                        data: postData,
+                        success: function (data) {
+                            if(data == "1"){
+                                layer.msg('新增员工成功', {
+                                    icon:6,
+                                    time:1000
+                                },function () {
+                                    parent.location.reload();
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                });
+                            } else {
+                                layer.msg('新增失败,员工编号已存在', {icon:6,time:1000});
+                            }
+                        },
+                        error: function (msg) {
+                            console.log(msg);
+                        }
+                    });
+                }
+          }});
+        //获取部门表的列表，并显示到select下拉菜单中
+        $.ajax({
+            type: "post",
+            url: "/departmentList",
+            success: function (data) {
+                var num =eval(data);
+                var select='';
+                for(var i = 0;i<num.length;i++){
+                    var option = '<option value="'+num[i].id+'">'+num[i].name+'</option>';
+                    select += option;
+                }
+                //select的ID
+                $("#departmentName").append(select);
+            },
+        });
+
+    })
+
+
+
+</script>
+
+</body>
+</html>

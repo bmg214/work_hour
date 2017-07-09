@@ -1,0 +1,241 @@
+<!--部门管理-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../lib/html5shiv.js"></script>
+    <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>部门管理</title>
+    <style>
+        #example th{
+            text-align: center;
+        }
+        #example td{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<nav class="breadcrumb">
+    <i class="Hui-iconfont">&#xe67f;</i> 首页
+    <span class="c-gray en">&gt;</span> 部门管理
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="Hui-iconfont">&#xe68f;</i>
+    </a>
+</nav>
+<div class="page-container">
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+            <a class="btn btn-primary radius" href="javascript:;" onclick="department_add('添加部门','department-edit.html','800','400')">
+                <i class="Hui-iconfont">&#xe600;</i> 添加部门
+            </a>
+            <!--<a href="javascript:;" onclick="admin_department_del()" class="btn btn-danger radius">
+                <i class="Hui-iconfont">&#xe6e2;</i> 批量删除
+            </a>-->
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg" id="example"></table>
+</div>
+
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="../js/base.js"></script>
+<script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+
+    $.ajax({
+        type: "post",
+        url: "/departmentList",
+        success: function (data) {
+           $('#example').DataTable( {
+               data: data,
+               //data 这里是固定不变的，name，position，salary，office 为你数据里对应的属性
+               loadingRecords: "正在加载数据...",
+               zeroRecords: "暂无数据",
+               //隐藏第一列id
+               columnDefs: [
+                   {
+                       "targets": [ 0 ],
+                       "visible": false,
+                       "searchable": false
+                   }
+               ],
+               //使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+               columns: [
+                    {
+                        title: 'id',
+                        data: 'id'
+                    },
+                   {
+                       title: '部门编号',
+                       data: 'number',
+                       width:"18%"
+                   }, {
+                       title: '部门名称',
+                       data: 'name',
+                       width:"18%"
+                   }, {
+                       title: "备注",
+                       data: 'depDescribe',
+                       width:"35%"
+
+                   }, {
+                       title: "是否已启用",
+                       data: 'delTarget',
+                       render: function(data, type, row){
+                           if(data == 0){
+                               return "<td class='td-status'><span class='label label-success radius'>已启用</span></td>"
+                           }else{
+                               return "<td class='td-status'><span class='label radius'>已停用</span></td>"
+                           }
+                       }
+                   },{
+                       title: "操作",
+                       render: function(data, type, row, meta){
+                           var data = JSON.stringify(row);
+                           //编辑与删除
+                           var change = "<a style='text-decoration:none' data='"+data+"' class='ml-5' onClick='department_edit(this)' href='javascript:;' title='编辑'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' data='"+data+"' class='ml-5' onClick='admin_department_del(this)' href='javascript:;' title='删除'><i class='Hui-iconfont'>&#xe6e2;</i></a>";
+                           //是否停用
+                           if(row.delTarget == 0){
+                               return "<a style='text-decoration:none' data='"+data+"' class='ml-5' onClick='department_stop(this)' href='javascript:;' title='停用'><i class='Hui-iconfont'>&#xe615;</i></a> " + change
+
+                           }else{
+                               return "<a style='text-decoration:none' data='"+data+"' class='ml-5' onClick='department_stop(this)' href='javascript:;' title='启用'><i class='Hui-iconfont'>&#xe631;</i></a> " + change
+                           }
+                       }
+                   }
+               ]
+           });
+        },
+        error: function (msg) {
+            console.log(msg);
+        }
+    });
+
+    //增加部门
+    function department_add(title, url, w, h) {
+        layer_show(title, url, w, h);
+    }
+    
+    //编辑部门
+    function department_edit(obj) {
+    	var json = obj.getAttribute("data");
+    	var num = JSON.parse(json);
+        var d_id = num.id;
+        layer_show('编辑部门','department-edit.html?+id='+d_id+'','800','400');
+
+    }
+
+    //删除部门
+    function admin_department_del(obj) {
+        var json = obj.getAttribute("data");
+        var num = JSON.parse(json);
+        var id = num.id;
+        var postData = {
+            id:id
+        }
+        layer.confirm('部门删除须谨慎，确认要删除吗？', function (index) {
+            $.ajax({
+                type: 'POST',
+                url: '/departmentDel',
+                data: postData,
+                success: function (data) {
+                    layer.msg('已删除!', {
+                        icon: 1,
+                        time: 1000,
+                    },function (res) {
+                        location.reload();
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                    });
+                },
+                error: function (data) {
+                    console.log(data.msg);
+                },
+            });
+        });
+    }
+
+    //是否停用
+    function department_stop(obj) {
+        var json = obj.getAttribute("data");
+        var num = JSON.parse(json);
+        var delTarget = num.delTarget;
+        var id = num.id;
+        var postData = {
+            id: id
+        }
+        if(delTarget == 0){
+            layer.confirm('确认要停用吗？',function(index){
+                postData.delTarget =1;
+                $.ajax({
+                    type: "post",
+                    url: "/departmentDelTarget",
+                    data: postData,
+                    success: function (data) {
+                        if(data == "1"){
+                            layer.msg('已停用', {
+                                icon:6,
+                                time:1000,
+                            },function (res) {
+                                location.reload();
+                            });
+                        } else {
+                            layer.msg('启用失败', {icon:6,time:1000});
+                        }
+                    }
+                });
+            });
+        }else{
+            layer.confirm('确认要启用吗？',function(index){
+                postData.delTarget =0;
+                $.ajax({
+                    type: "post",
+                    url: "/departmentDelTarget",
+                    data: postData,
+                    success: function (data) {
+                        if(data == "1"){
+                            layer.msg('已启用', {
+                                icon:6,
+                                time:1000,
+                            },function (res) {
+                                location.reload();
+                            });
+                        } else {
+                            layer.msg('启用失败', {icon:6,time:1000});
+                        }
+                    }
+                });
+
+            });
+        }
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
